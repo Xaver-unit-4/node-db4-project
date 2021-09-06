@@ -1,9 +1,18 @@
 const db = require('../../data/db-config')
 
-async function getRecipeById(recipe_id) {
-  const recipeRows = await db ('recipe as r')
-    .where('recipe_id', recipe_id)
-  return recipeRows
+const getRecipes = () => {
+  return db('recipes')
 }
 
-module.exports = {getRecipeById}
+const getRecipeById = (recipe_id) => {
+  return db('recipes')
+    .where({ recipe_id }).first()
+}
+
+// async function getRecipeById(recipe_id) {
+//   const recipeRows = await db ('recipe')
+//     .where('recipe_id', recipe_id)
+//   return recipeRows
+// }
+
+module.exports = {getRecipes, getRecipeById}
